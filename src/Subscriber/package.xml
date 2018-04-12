@@ -2,7 +2,7 @@
 <package>
   <name>subscriber</name>
   <version>1.0.0</version>
-  <description>The simple publisher for CMU Radpiper Intro to ROS session</description>
+  <description>The simple subscriber for CMU Radpiper Intro to ROS session</description>
 
 
   <maintainer email="mmousaei@andrew.cmu.edu">Mohammadreza Mousaei</maintainer>
