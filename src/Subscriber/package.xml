@@ -9,6 +9,7 @@
   <license>CMU</license>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>config</build_depend>
 <!--   <build_depend>roscpp</build_depend>
   <build_depend>std_msgs</build_depend>
 

@@ -1,9 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(publisher)
+project(subscriber)
 
 find_package(catkin REQUIRED
   roscpp
-  config
   std_msgs
 )
 
@@ -14,5 +13,5 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(publisherNode src/publisher.cpp)
-target_link_libraries(publisherNode ${catkin_LIBRARIES})
+add_executable(subscriberNode src/subscriber.cpp)
+target_link_libraries(subscriberNode ${catkin_LIBRARIES})

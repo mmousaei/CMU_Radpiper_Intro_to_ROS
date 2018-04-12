@@ -3,6 +3,7 @@ project(subscriber)
 
 find_package(catkin REQUIRED
   roscpp
+  config
   std_msgs
 )
 
