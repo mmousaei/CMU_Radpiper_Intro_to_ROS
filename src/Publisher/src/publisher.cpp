@@ -1,6 +1,6 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-
+#include "config/coordinate.h"
 #include <sstream>
 
 /**
@@ -45,6 +45,7 @@ int main(int argc, char **argv)
    * buffer up before throwing some away.
    */
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+  ros::Publisher coordinate_pub = n.advertise<config::coordinate>("coordinate", 1000);
 
   ros::Rate loop_rate(10);
 
@@ -58,11 +59,26 @@ int main(int argc, char **argv)
     /**
      * This is a message object. You stuff it with data, and then publish it.
      */
+    std_msgs::Header header;
     std_msgs::String msg;
+    config::coordinate crd;
+
+    header.stamp = ros::Time::now();
+    header.frame_id = "my_frame"; 
+
 
     std::stringstream ss;
     ss << "hello world " << count;
     msg.data = ss.str();
+    // msg.header = header;
+
+    crd.x = count + 1.5;
+    crd.y = count + 0.5;
+    crd.z = count - 1.5;
+    crd.header = header;
+
+
+
 
     ROS_INFO("%s", msg.data.c_str());
 
@@ -73,6 +89,7 @@ int main(int argc, char **argv)
      * in the constructor above.
      */
     chatter_pub.publish(msg);
+    coordinate_pub.publish(crd);
 
     ros::spinOnce();
 

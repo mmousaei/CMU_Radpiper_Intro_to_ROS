@@ -1,5 +1,6 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include "config/coordinate.h"
 
 /**
  * This tutorial demonstrates simple receipt of messages over the ROS system.
@@ -7,6 +8,10 @@
 void chatterCallback(const std_msgs::String::ConstPtr& msg)
 {
   ROS_INFO("I heard: [%s]", msg->data.c_str());
+}
+void coordinateCallback(const config::coordinate::ConstPtr& msg)
+{
+  ROS_INFO("The coordinate is: [%f, %f, %f]", msg->x, msg->y, msg->z );
 }
 
 int main(int argc, char **argv)
@@ -45,7 +50,8 @@ int main(int argc, char **argv)
    * is the number of messages that will be buffered up before beginning to throw
    * away the oldest ones.
    */
-  ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
+  ros::Subscriber chatter_sub = n.subscribe("chatter", 1000, chatterCallback);
+  ros::Subscriber coordinate_sub = n.subscribe("coordinate", 1000, coordinateCallback);
 
   /**
    * ros::spin() will enter a loop, pumping callbacks.  With this version, all
